@@ -80,6 +80,8 @@ function App(): JSX.Element {
         Accept: 'application/json',
       },
     }).then(response => {
+      setIsSelected(false);
+      setSelectImage('');
       console.log(response);
       Alert.alert('Done', 'Image Uplaoded');
     });
@@ -124,7 +126,9 @@ function App(): JSX.Element {
           <View style={styles(backgroundStyle.backgroundColor).imgView}>
             <Image
               style={styles(backgroundStyle.backgroundColor).img}
-              source={{uri: selectImage}}
+              source={
+                isSelected ? {uri: selectImage} : require('./assets/user.png')
+              }
             />
           </View>
           <TouchableOpacity
